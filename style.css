@@ -75,7 +75,6 @@
             width: auto;
         }
         .layer-selector2 .tree-container li.leaf-node:hover > .layer-tools,
-        .layer-selector2 .tree-container li.leaf-node.selected > .layer-tools,
         .layer-selector2 .tree-container li.leaf-node.active > .layer-tools {
             display: block;
         }
