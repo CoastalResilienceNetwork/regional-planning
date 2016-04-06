@@ -54,7 +54,7 @@ define([
         "use strict";
 
         return declare(PluginBase, {
-            toolbarName: "Map Layers v2",
+            toolbarName: "Regional Planning",
             fullName: "Configure and control layers to be overlayed on the base map.",
             toolbarType: "sidebar",
             allowIdentifyWhenActive: true,
