@@ -28,7 +28,17 @@ define([
 
             // Return cached map service data.
             getServiceData: function() {
-                return ajaxUtil.get(this.getServiceUrl());
+                var serviceUrl = this.getServiceUrl();
+
+                // If service information is only partially
+                // defined or the config is bad for this
+                // service, don't bother getting the data
+                // because it the response is an error.
+                if (serviceUrl.match(/undefined/) === null) {
+                    return ajaxUtil.get(this.getServiceUrl());
+                }
+
+                return null;
             },
 
             // Return a promise with service layer data.
@@ -59,6 +69,12 @@ define([
 
                 if (!serviceData || !layer) {
                     return null;
+                } else if (serviceData instanceof Error) {
+                    // If the response from the server was an
+                    // error, the service is unavailable.
+                    return {
+                        isUnavailable: true
+                    };
                 }
 
                 return _.find(serviceData.layers, function(serviceLayer) {
