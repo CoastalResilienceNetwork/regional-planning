@@ -100,14 +100,16 @@ define([
             bindTreeEvents: function() {
                 var self = this;
 
-                function toggleLayer() {
-                    var layerId = self.getClosestLayerId(this),
-                        layer = self.tree.findLayer(layerId);
-                    self.toggleLayer(layer);
-                }
-
                 $(this.container)
-                    .on('click', 'a.layer-row', toggleLayer)
+                    .on('click', 'a.layer-row', function() {
+                        if ($(this).parent().hasClass('unavailable')) {
+                            return;
+                        }
+
+                        var layerId = self.getClosestLayerId(this),
+                            layer = self.tree.findLayer(layerId);
+                        self.toggleLayer(layer);
+                    })
                     .on('click', 'a.info', function() {
                         self.state = self.state.setInfoBoxLayerId(self.getClosestLayerId(this));
                         self.showLayerInfo();
@@ -376,6 +378,7 @@ define([
             renderLayer: function(indent, layer) {
                 var isSelected = layer.isSelected(),
                     isExpanded = layer.isExpanded(),
+                    isUnavailable = layer.isUnavailable(),
                     infoBoxIsDisplayed = layer.infoIsDisplayed();
 
                 var cssClass = [];
@@ -384,6 +387,9 @@ define([
                 }
                 if (infoBoxIsDisplayed) {
                     cssClass.push('active');
+                }
+                if (isUnavailable) {
+                    cssClass.push('unavailable');
                 }
                 cssClass.push(layer.isFolder() ? 'parent-node' : 'leaf-node');
                 cssClass = cssClass.join(' ');

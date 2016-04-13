@@ -37,18 +37,26 @@
 
         <span class="layer-icon">
         <% if (layer.isFolder()) { %>
-            <% if (isExpanded) { %>
+            <% if (layer.isUnavailable()) { %>
+                <i class="icon-right-dir"></i>
+            <% } else if (isExpanded) { %>
                 <i class="icon-down-dir"></i>
             <% } else { %>
                 <i class="icon-right-dir"></i>
             <% } %>
         <% } else { %>
-            <i class="icon-circle<% if (!isSelected) { %>-empty<% } %>"></i>
+            <% if (!layer.isUnavailable()) { %>
+                <i class="icon-circle<% if (!isSelected) { %>-empty<% } %>"></i>
+            <% } %>
         <% } %>
         </span>
 
         <span class="layer-name">
-            <%= layer.getDisplayName() %>
+            <% if (layer.isUnavailable()) { %>
+                <em>Service unavailable</em>
+            <% } else { %>
+                <%= layer.getDisplayName() %>
+            <% } %>
         </span>
 
         </a>
