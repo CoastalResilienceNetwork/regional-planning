@@ -226,6 +226,10 @@ define([
 
             getDownloadUrl: function() {
                 return this.node.downloadUrl;
+            },
+
+            isUnavailable: function() {
+                return !!this.node.isUnavailable;
             }
         });
 
