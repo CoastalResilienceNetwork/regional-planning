@@ -20,6 +20,7 @@ define([
         "jquery",
         "underscore",
         "dojo/text!./templates.html",
+        "dojo/text!./overrides.json",
         "esri/layers/FeatureLayer",
         "esri/layers/ArcGISDynamicMapServiceLayer",
         "esri/layers/ArcGISTiledMapServiceLayer",
@@ -39,6 +40,7 @@ define([
              $,
              _,
              templates,
+             overridesJson,
              FeatureLayer,
              ArcGISDynamicMapServiceLayer,
              ArcGISTiledMapServiceLayer,
@@ -53,12 +55,16 @@ define([
              Tree) {
         "use strict";
 
+        var overrides = JSON.parse(overridesJson);
         return declare(PluginBase, {
-            toolbarName: "Regional Planning",
-            fullName: "Configure and control layers to be overlayed on the base map.",
+            toolbarName: overrides.name || "Regional Planning",
+            fullName: overrides.description || "Configure and control layers to be overlayed on the base map.",
+            width: overrides.width || 300,
+            height: overrides.height || 400,
+            resizable: _.isUndefined(overrides.resizable) ? true : overrides.resizable,
+            hasCustomPrint: _.isUndefined(overrides.hasCustomPrint) ? true : overrides.hasCustomPrint ,
             toolbarType: "sidebar",
             allowIdentifyWhenActive: true,
-            hasCustomPrint: true,
 
             initialize: function (frameworkParameters, currentRegion) {
                 declare.safeMixin(this, frameworkParameters);
