@@ -53,6 +53,16 @@
 
   <% } else { %>
     <div class="report-intro">
+      <% if (layers.length) { %>
+        <p class="text-center button-container">
+          <button class="start-drawing button radius i18n" data-i18n="Draw area of interest"
+              <%= (isDrawing || !reportCount ? 'disabled="disabled"' : '') %>>Draw area of interest</button>
+
+          <button class="cancel-drawing button radius i18n<%= (isDrawing ? '' : ' hidden') %>"
+              data-i18n="Reset">Reset</button>
+        </p>
+      <% } %>
+
       <p class="i18n" data-i18n="Draw and report is a way to view specific data by drawing a custom shape on the map. Your report will contain:">
         Draw and report is a way to view specific data by drawing a custom
         shape on the map. Your report will contain:
@@ -60,7 +70,6 @@
 
       <% if (!layers.length) { %>
         <p><em class="i18n" data-i18n="No layers have been selected yet">No layers have been selected yet.</em></p>
-
       <% } else { %>
         <ul>
           <% _.each(layers, function(layer) { %>
@@ -78,14 +87,6 @@
             </li>
           <% }) %>
         </ul>
-
-        <p class="text-center">
-          <button class="start-drawing button radius i18n" data-i18n="Draw area of interest"
-              <%= (isDrawing ? 'disabled="disabled"' : '') %>>Draw area of interest</button>
-
-          <button class="cancel-drawing button radius i18n<%= (isDrawing ? '' : ' hidden') %>"
-              data-i18n="Cancel">Cancel</button>
-        </p>
       </div>
     <% } %>
   <% } %>

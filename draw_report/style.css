@@ -60,6 +60,10 @@
     font-weight: normal;
 }
 
+.layer-selector2 .tab-report .button-container {
+    margin-top: 20px;
+}
+
 .layer-selector2 .tab-report .cancel-drawing {
     background-color: #cb2b2b;
     border-color: #8c1e1e;
