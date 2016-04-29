@@ -8,6 +8,10 @@
     margin-left: 0;
 }
 
+.layer-selector2 .info-box {
+    color: #000;
+}
+
 .layer-selector2 .tab-layers,
 .layer-selector2 .tab-report {
     position: relative;
