@@ -270,7 +270,7 @@ define(["dojo/_base/declare",
 
                 if (!reportLayers.length) {
                     defer.resolve({
-                        error: 'No reports have been configured for this layer.'
+                        error: i18next.t('No reports have been configured for this layer')
                     });
                     return defer;
                 }
