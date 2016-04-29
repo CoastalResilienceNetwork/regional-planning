@@ -52,8 +52,8 @@
   </div>
 
   <% } else { %>
-    <div class="report-intro">
-      <% if (layers.length) { %>
+    <% if (layers.length) { %>
+      <div class="result-header">
         <p class="text-center button-container">
           <button class="start-drawing button radius i18n" data-i18n="Draw area of interest"
               <%= (isDrawing || !reportCount ? 'disabled="disabled"' : '') %>>Draw area of interest</button>
@@ -61,8 +61,10 @@
           <button class="cancel-drawing button radius i18n<%= (isDrawing ? '' : ' hidden') %>"
               data-i18n="Reset">Reset</button>
         </p>
-      <% } %>
+      </div>
+    <% } %>
 
+    <div class="report-intro">
       <p class="i18n" data-i18n="Draw and report is a way to view specific data by drawing a custom shape on the map. Your report will contain:">
         Draw and report is a way to view specific data by drawing a custom
         shape on the map. Your report will contain:
