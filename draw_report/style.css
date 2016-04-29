@@ -11,7 +11,7 @@
 .layer-selector2 .tab-report .report-intro {
     overflow: auto;
     position: absolute;
-    top: 0px;
+    top: 65px;
     bottom: 40px;
 }
 
@@ -58,6 +58,19 @@
     text-transform: uppercase;
     font-size: smaller;
     font-weight: normal;
+}
+
+.layer-selector2 .tab-report .button-container {
+    margin-bottom: 0px;
+}
+
+.layer-selector2 .tab-report .button-container .button {
+    width: 45%;
+    display: inline-block;
+}
+
+.layer-selector2 .tab-report .button-container .button.hidden {
+    display: none;
 }
 
 .layer-selector2 .tab-report .cancel-drawing {

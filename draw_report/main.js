@@ -167,6 +167,15 @@ define(["dojo/_base/declare",
                 return this.reportData;
             },
 
+            getLayerReportCount: function() {
+                var activeLayers = this.getActiveLayers(),
+                    count = _.reduce(activeLayers, function(memo, layer) {
+                        return memo + layer.getReports().length;
+                    }, 0);
+
+                return count;
+            },
+
             setReportData: function(data) {
                 this.reportData = data;
             },
@@ -353,6 +362,7 @@ define(["dojo/_base/declare",
 
                 var html = this.pluginTmpl({
                     layers: this.getActiveLayers(),
+                    reportCount: this.getLayerReportCount(),
                     reportData: this.getReportData(),
                     isDrawing: !!this.isDrawing,
                     isLoading: !!this.isLoading
