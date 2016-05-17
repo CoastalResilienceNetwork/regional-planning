@@ -1,4 +1,4 @@
-﻿.x-body .layer-selector2 {
+.layer-selector2 {
     color: #666;
     height: 100%;
     overflow: hidden;
@@ -220,3 +220,8 @@
         display: block;
         height: 100%;
     }
+
+/* See #29 */
+.content .plugin-container-outer .plugin-container {
+    padding-bottom: 28px;
+}
