@@ -32,7 +32,8 @@ define([
         "./draw_report/main",
         "./State",
         "./Config",
-        "./Tree"
+        "./Tree",
+        "./LayerNode",
     ],
     function(declare,
              Deferred,
@@ -52,7 +53,8 @@ define([
              DrawAndReport,
              State,
              Config,
-             Tree) {
+             Tree,
+             LayerNode) {
         "use strict";
 
         var overrides = JSON.parse(overridesJson);
