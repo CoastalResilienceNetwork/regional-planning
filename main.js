@@ -63,7 +63,7 @@ define([
             height: overrides.height || 400,
             resizable: _.isUndefined(overrides.resizable) ? true : overrides.resizable,
             hasCustomPrint: _.isUndefined(overrides.hasCustomPrint) ? true : overrides.hasCustomPrint,
-			infoGraphic: _.isUndefined(overrides.infoGraphic) ? undefined : overrides.infoGraphic ,
+            infoGraphic: _.isUndefined(overrides.infoGraphic) ? undefined : overrides.infoGraphic,
             toolbarType: "sidebar",
             allowIdentifyWhenActive: true,
 
