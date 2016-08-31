@@ -185,5 +185,17 @@
                 ]
             }
         ]
+    },
+    {
+        "displayName": "Tiled layers",
+        "server": {
+            "type": "ags",
+            "layerType": "tiled",
+            "url": "http://tiles.arcgis.com/tiles/C8EMgrsFcRFL6LrL/arcgis/rest/services/",
+            "name": "NHC_SeamlessSLOSH_Category1"
+        },
+        "includeLayers": [
+            { "name": "Inundation Depth " }
+        ]
     }
 ]
