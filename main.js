@@ -224,10 +224,18 @@ define([
                         return;
                     }
 
-                    if (layerServiceIds.length === 0) {
-                        mapLayer.setVisibleLayers([]);
+                    if (mapLayer instanceof esri.layers.ArcGISTiledMapServiceLayer) {
+                        if (layerServiceIds.length === 0) {
+                            mapLayer.hide();
+                        } else {
+                            mapLayer.show();
+                        }
                     } else {
-                        mapLayer.setVisibleLayers(layerServiceIds);
+                        if (layerServiceIds.length === 0) {
+                            mapLayer.setVisibleLayers([]);
+                        } else {
+                            mapLayer.setVisibleLayers(layerServiceIds);
+                        }
                     }
                 }, this);
 
