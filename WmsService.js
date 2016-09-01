@@ -81,6 +81,24 @@ define([
 
                 if (!serviceData || !layer) {
                     return null;
+                } else if (serviceData instanceof Error) {
+                    // If the response from the server was an
+                    // error, the service is unavailable.
+                    return {
+                        isUnavailable: true
+                    };
+                }
+
+                // Return artificial service data to support the
+                // `includeAllLayers` property for root nodes.
+                if (layer.isRootNode()) {
+                    var subLayers = _.filter(serviceData.layers, {
+                        parentLayerId: -1
+                    });
+                    return {
+                        id: -1,
+                        subLayerIds: _.pluck(subLayers, 'id')
+                    };
                 }
 
                 return _.find(serviceData.layers, function(serviceLayer) {

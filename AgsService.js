@@ -77,6 +77,18 @@ define([
                     };
                 }
 
+                // Return artificial service data to support the
+                // `includeAllLayers` property for root nodes.
+                if (layer.isRootNode()) {
+                    var subLayers = _.filter(serviceData.layers, {
+                        parentLayerId: -1
+                    });
+                    return {
+                        id: -1,
+                        subLayerIds: _.pluck(subLayers, 'id')
+                    };
+                }
+
                 return _.find(serviceData.layers, function(serviceLayer) {
                     if (layer.getName() === serviceLayer.name) {
                         // Compare not only the name, but the structure as well.
