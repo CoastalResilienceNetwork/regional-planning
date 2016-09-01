@@ -230,6 +230,10 @@ define([
 
             isUnavailable: function() {
                 return !!this.node.isUnavailable;
+            },
+
+            isRootNode: function() {
+                return this.node.isRootNode;
             }
         });
 
