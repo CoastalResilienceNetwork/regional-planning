@@ -18,7 +18,7 @@ Top-level layers are the first thing you will specify in the configuration. They
 ##### Server object
 
 - **type** - The map service type. The only valid options are `ags` or `wms`.
-- **layerType** - The type of layers that the service provides. The only valid option is `dynamic`.
+- **layerType** - The type of layers that the service provides. Valid options are `dynamic` and `tiled`.
 - **url** - For `ags` services, the URL to the services folder. For `wms` services, the URL to the root WMS service (it should end in `wms`).
 - **name** - Only for `ags` services. The name of the service to use.
 
