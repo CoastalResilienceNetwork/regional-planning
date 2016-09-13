@@ -143,7 +143,6 @@ define([
                 $('body')
                     .on('click', '#' + this.layerMenuId + ' a.download', function() {
                         var layerId = self.getClosestLayerId(this);
-                        console.log('Download', layerId);
                         self.destroyLayerMenu();
                     })
                     .on('click', '#' + this.layerMenuId + ' a.zoom', function() {
