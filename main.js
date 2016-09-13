@@ -601,6 +601,7 @@ define([
             hideLayerInfo: function() {
                 $(this.container).find('.info-box-container').empty();
                 this.state = this.state.clearInfoBoxLayerId();
+                this.rebuildTree();
             },
 
             toggleLayer: function(layer) {
