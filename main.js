@@ -668,7 +668,6 @@ define([
                 this.clearActiveStateForLayerTools(selector);
                 $(el).find('i').addClass('active');
                 $(el).closest('[data-layer-id]').addClass('active');
-                this.rebuildTree();
             },
 
             clearActiveStateForLayerTools: function(selector) {
@@ -677,7 +676,6 @@ define([
 
                 $el.removeClass('active');
                 $el.closest('[data-layer-id]').removeClass('active');
-                this.rebuildTree();
             },
 
             // Rebuild tree from scratch.
