@@ -33,12 +33,12 @@ define([
                 // If service information is only partially
                 // defined or the config is bad for this
                 // service, don't bother getting the data
-                // because it the response is an error.
+                // because the response will be an error.
                 if (serviceUrl.match(/undefined/) === null) {
                     return ajaxUtil.get(this.getServiceUrl());
                 }
 
-                return null;
+                return {};
             },
 
             // Return a promise with service layer data.

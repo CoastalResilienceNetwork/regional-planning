@@ -61,12 +61,12 @@
 
         </a>
 
-        <% if (!layer.isFolder()) { %>
         <div class="layer-tools">
             <a href="javascript:;" class="info"><i class="icon-info-circled <% if (infoBoxIsDisplayed) { %> active <% } %>"></i></a>
-            <a href="javascript:;" class="more"><i class="icon-ellipsis"></i></a>
+            <% if (!layer.isFolder()) { %>
+                <a href="javascript:;" class="more"><i class="icon-ellipsis"></i></a>
+            <% } %>
         </div>
-        <% } %>
 
     <% if (layer.isFolder() && isExpanded) { %>
         <%= _.map(layer.getChildren(), renderLayer).join('') %>
@@ -80,7 +80,13 @@
         <div class="body">
             <div class="description">
                 <div class="info-label"><%= layer.getDisplayName() %></div>
-                <div class="info-value"><%= layer.getDescription() %></div>
+                <div class="info-value">
+                    <% if (layer.getDescription() === '') { %>
+                        <em>No description or metadata available for this layer.</em>
+                    <% } else { %>
+                        <%= layer.getDescription() %>
+                    <% } %>
+                </div>
             </div>
         </div>
     </div>
