@@ -91,6 +91,14 @@ define([
 
                 return _.find(serviceData.layers, function(serviceLayer) {
                     if (layer.getName() === serviceLayer.name) {
+                        // If an id has been provided in the config, we only need to
+                        // compare it to the id in the service data to find the correct layer.
+                        // At this point, layer.getServiceId() will return undefined or
+                        // the id from the config.
+                        if (layer.getServiceId() && layer.getServiceId() !== serviceLayer.id) {
+                            return false;
+                        }
+
                         // Compare not only the name, but the structure as well.
                         // Protects against an edge case where a map service
                         // contains a parent and child layer with the same name.
