@@ -20,6 +20,7 @@
             additionalProperties: false,
             properties: {
                 name: { type: 'string' },
+                id: { type: 'number' },
                 displayName: { type: 'string' },
                 description: { type: 'string' },
                 availableInRegions: { type: 'array', items: { type: 'string' } },
