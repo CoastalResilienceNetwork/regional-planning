@@ -63,6 +63,12 @@ define([
                     layerData = _.assign({}, serviceLayer || {}, layerDetails || {}),
                     layerId = this.createLayerId(parent, layerData),
                     node = _.assign(layerData, {
+                        // Set `includeAllLayers` to true for dynamically
+                        // loaded service nodes that contain subLayers.
+                        // Otherwise, the tree will render group/folder
+                        // layers as leaf nodes, and child layers will
+                        // be ignored.
+                        includeAllLayers: !!serviceLayer.subLayerIds,
                         isSelected: state.isSelected(layerId),
                         isExpanded: state.isExpanded(layerId),
                         infoIsDisplayed: state.infoIsDisplayed(layerId),

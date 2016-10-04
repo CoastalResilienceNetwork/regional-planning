@@ -16,7 +16,7 @@ define([
                     expandedLayers: [],
                     // List of objects as { layerId: opacityValue }.
                     layerOpacity: [],
-                    // Layer id that infobox is display for.
+                    // Layer id that infobox is displayed for.
                     infoBoxLayerId: null
                 });
             },

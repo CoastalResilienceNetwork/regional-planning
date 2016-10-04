@@ -21,7 +21,9 @@
             constructor: function () {
                 var rawNodes = this.parse(layerSourcesJson),
                     layers = _.map(rawNodes, function(node) {
-                        return LayerNode.fromJS(node);
+                        return LayerNode.fromJS(_.assign({}, node, {
+                            isRootNode: true
+                        }));
                     });
                 this.tree = new Tree(layers);
             },

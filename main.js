@@ -145,7 +145,6 @@ define([
                 $('body')
                     .on('click', '#' + this.layerMenuId + ' a.download', function() {
                         var layerId = self.getClosestLayerId(this);
-                        console.log('Download', layerId);
                         self.destroyLayerMenu();
                     })
                     .on('click', '#' + this.layerMenuId + ' a.zoom', function() {
@@ -226,10 +225,18 @@ define([
                         return;
                     }
 
-                    if (layerServiceIds.length === 0) {
-                        mapLayer.setVisibleLayers([]);
+                    if (mapLayer instanceof esri.layers.ArcGISTiledMapServiceLayer) {
+                        if (layerServiceIds.length === 0) {
+                            mapLayer.hide();
+                        } else {
+                            mapLayer.show();
+                        }
                     } else {
-                        mapLayer.setVisibleLayers(layerServiceIds);
+                        if (layerServiceIds.length === 0) {
+                            mapLayer.setVisibleLayers([]);
+                        } else {
+                            mapLayer.setVisibleLayers(layerServiceIds);
+                        }
                     }
                 }, this);
 
@@ -596,6 +603,7 @@ define([
             hideLayerInfo: function() {
                 $(this.container).find('.info-box-container').empty();
                 this.state = this.state.clearInfoBoxLayerId();
+                this.rebuildTree();
             },
 
             toggleLayer: function(layer) {
@@ -662,7 +670,6 @@ define([
                 this.clearActiveStateForLayerTools(selector);
                 $(el).find('i').addClass('active');
                 $(el).closest('[data-layer-id]').addClass('active');
-                this.rebuildTree();
             },
 
             clearActiveStateForLayerTools: function(selector) {
@@ -671,7 +678,6 @@ define([
 
                 $el.removeClass('active');
                 $el.closest('[data-layer-id]').removeClass('active');
-                this.rebuildTree();
             },
 
             // Rebuild tree from scratch.

@@ -33,12 +33,12 @@ define([
                 // If service information is only partially
                 // defined or the config is bad for this
                 // service, don't bother getting the data
-                // because it the response is an error.
+                // because the response will be an error.
                 if (serviceUrl.match(/undefined/) === null) {
                     return ajaxUtil.get(this.getServiceUrl());
                 }
 
-                return null;
+                return {};
             },
 
             // Return a promise with service layer data.
@@ -77,8 +77,28 @@ define([
                     };
                 }
 
+                // Return artificial service data to support the
+                // `includeAllLayers` property for root nodes.
+                if (layer.isRootNode()) {
+                    var subLayers = _.filter(serviceData.layers, {
+                        parentLayerId: -1
+                    });
+                    return {
+                        id: -1,
+                        subLayerIds: _.pluck(subLayers, 'id')
+                    };
+                }
+
                 return _.find(serviceData.layers, function(serviceLayer) {
                     if (layer.getName() === serviceLayer.name) {
+                        // If an id has been provided in the config, we only need to
+                        // compare it to the id in the service data to find the correct layer.
+                        // At this point, layer.getServiceId() will return undefined or
+                        // the id from the config.
+                        if (layer.getServiceId() && layer.getServiceId() !== serviceLayer.id) {
+                            return false;
+                        }
+
                         // Compare not only the name, but the structure as well.
                         // Protects against an edge case where a map service
                         // contains a parent and child layer with the same name.

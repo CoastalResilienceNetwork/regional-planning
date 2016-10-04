@@ -1,6 +1,7 @@
 [
     {
         "displayName": "Coastal Resilience (NJ)",
+        "description": "New Jersey Layers",
         "server": {
             "type": "ags",
             "layerType": "dynamic",
@@ -184,6 +185,33 @@
                     }
                 ]
             }
+        ]
+    },
+    {
+        "displayName": "Tiled layers",
+        "server": {
+            "type": "ags",
+            "layerType": "tiled",
+            "url": "http://tiles.arcgis.com/tiles/C8EMgrsFcRFL6LrL/arcgis/rest/services/",
+            "name": "NHC_SeamlessSLOSH_Category1"
+        },
+        "includeLayers": [
+            { "name": "Inundation Depth " }
+        ]
+    },
+    {
+        "name": "St Vincent and the Grenadines",
+        "server": {
+            "type": "ags",
+            "layerType": "dynamic",
+            "url": "http://dev.services2.coastalresilience.org/arcgis/rest/services/GSVG",
+            "name": "GSVG"
+        },
+        "includeLayers": [
+             {
+                 "name": "St Vincent and the Grenadines",
+                 "includeAllLayers": true
+             }
         ]
     }
 ]

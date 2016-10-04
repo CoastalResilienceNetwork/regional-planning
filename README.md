@@ -6,7 +6,7 @@ The `regional-planning` plugin is an updated version of the [map-tree](https://g
 
 The easiest way to see how to configure the plugin is to take a look at [sample_layers.json](https://github.com/CoastalResilienceNetwork/regional-planning/blob/master/sample_layers.json). This configuration file exercises all of the of plugin's functionality. It initially started as updated version of the map-tree configuration for the [New Jersey region](https://github.com/CoastalResilienceNetwork/newjersey-region/blob/master/plugins/layer_selector/layers.json), but grew to test out more functionality.
 
-The biggest difference between the configuration of the `map-tree` plugin and the `regional-planning` plugin is that **layers are identified by name and not id**. This was done so that layers could be reordered in the map service without having to update the layer configuration. However, if the name of the layer is updated in the map service, you must also update the configuration for any region using that layer. Also, layers with duplicate names will cause problems with this plugin and should be avoided.
+The biggest difference between the configuration of the `map-tree` plugin and the `regional-planning` plugin is that **layers are identified by name and not id**. This was done so that layers could be reordered in the map service without having to update the layer configuration. However, if the name of the layer is updated in the map service, you must also update the configuration for any region using that layer. If there are layers with duplicate names within the same map service, you can use layer ids to disambiguate layers.
 
 ##### Top-level layer object
 
@@ -18,7 +18,7 @@ Top-level layers are the first thing you will specify in the configuration. They
 ##### Server object
 
 - **type** - The map service type. The only valid options are `ags` or `wms`.
-- **layerType** - The type of layers that the service provides. The only valid option is `dynamic`.
+- **layerType** - The type of layers that the service provides. Valid options are `dynamic` and `tiled`.
 - **url** - For `ags` services, the URL to the services folder. For `wms` services, the URL to the root WMS service (it should end in `wms`).
 - **name** - Only for `ags` services. The name of the service to use.
 
@@ -27,6 +27,7 @@ Top-level layers are the first thing you will specify in the configuration. They
 The layer object is the core configuration object used in the config.
 
 - **name** - The name of the layer. This must match the name of the layer in the map service. **For the top-level layers that function as folders, no value is required for `name`**
+- **id** - The id of the layer. **This property is only required to disambiguate layers when there are multiple layers in a service with the same name**
 - **displayName** - The name that will be displayed in the plugin UI.
 - **description** - A custom description for the layer that will be shown in the plugin UI. If this is not specified, the description stored with the layer in the map service will be used.
 - **downloadUrl** - URL to download the layer. This can be any URL, but should be a URL to a zip file, shapefile, or some other file related to the layer.
