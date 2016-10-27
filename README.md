@@ -86,15 +86,3 @@ The layers in this configuration will be rendered like so in the UI:
   > Layer A
     * ## Layer B
 ```
-
-### Overriding the plugin UI
-
-Components of the UI can be overridden by creating a `overrides.json` file. There is a sample available [here](https://github.com/CoastalResilienceNetwork/regional-planning/blob/master/overrides.json). The override configuration settings are detailed below.
-
-- **name** - The name that is displayed in the plugin title bar. The default is "Regional Planning"
-- **description** - The text that is displayed when users hover on the plugin button. The default is "Configure and control layers to be overlayed on the base map".
-- **height** - The initial height of the plugin in pixels. The default is 400.
-- **width** - The initial width of the plugin in pixels. The default is 300.
-- **resizable** - Determines whether or not the user can resize the plugin window. The default is `true`.
-- **hasCustomPrint** - Determines whether or not the plugin has a custom print layout. The default is `true`.
-- **infoGraphic** - An image or HTML snippet to use as the infographic for the plugin introduction. The default is that there is no infographic.
