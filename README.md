@@ -93,8 +93,7 @@ Components of the UI can be overridden by creating a `overrides.json` file. Ther
 
 - **name** - The name that is displayed in the plugin title bar. The default is "Regional Planning"
 - **description** - The text that is displayed when users hover on the plugin button. The default is "Configure and control layers to be overlayed on the base map".
-- **height** - The initial height of the plugin in pixels. The default is 400.
+- **size** - The size of the plugin: `'small'`, `'large'`, or `'custom'`. The default is `'small'`. If `'custom'` is selected the plugin's width will be set from the `'width'` property.
 - **width** - The initial width of the plugin in pixels. The default is 300.
-- **resizable** - Determines whether or not the user can resize the plugin window. The default is `true`.
 - **hasCustomPrint** - Determines whether or not the plugin has a custom print layout. The default is `true`.
 - **infoGraphic** - An image or HTML snippet to use as the infographic for the plugin introduction. The default is that there is no infographic.
