@@ -1,6 +1,5 @@
 {
     "css": [
-        "plugins/regional-planning/fontello-8ae227d1/css/layer-selector-v2.css",
         "plugins/regional-planning/style.css",
         "plugins/regional-planning/draw_report/style.css"
     ],
