@@ -178,7 +178,7 @@
         background: #bebebe;
         color: #414141;
         width: 140px;
-        z-index: 1000;
+        z-index: 2000;
     }
     .layer-selector2-layer-menu:after {
         width: 0;
