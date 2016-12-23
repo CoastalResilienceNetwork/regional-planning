@@ -101,3 +101,7 @@
     overflow: auto;
     padding: 0 10px;
 }
+
+.layer-selector2 .tree-container {
+    position: revert !important;
+}
