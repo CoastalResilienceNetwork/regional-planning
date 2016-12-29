@@ -196,7 +196,10 @@
             "name": "NHC_SeamlessSLOSH_Category1"
         },
         "includeLayers": [
-            { "name": "Inundation Depth " }
+            {
+                "name": "Inundation Depth ",
+                "downloadUrl": "https://raw.githubusercontent.com/CoastalResilienceNetwork/regional-planning/master/README.md"
+            }
         ]
     },
     {
