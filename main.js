@@ -79,7 +79,6 @@ define([
                 this.treeTmpl = _.template(this.getTemplateById('tree'));
                 this.layerTmpl = _.template(this.getTemplateById('layer'));
                 this.infoBoxTmpl = _.template(this.getTemplateById('info-box'));
-                this.layerMenuTmpl = _.template(this.getTemplateById('layer-menu'));
                 this.layerMenuId = _.uniqueId('layer-selector2-layer-menu-');
 
                 this.state = new State();
@@ -125,10 +124,6 @@ define([
                     .on('click', '.info-box .close', function() {
                         self.hideLayerInfo();
                     })
-                    .on('click', 'a.more', function() {
-                        self.showLayerMenu(this);
-                        self.setActiveStateForLayerTools(this, '.more');
-                    })
                     .on('keyup', 'input.filter', function() {
                         var $el = $(this),
                             filterText = $el.val();
@@ -142,13 +137,8 @@ define([
             bindLayerMenuEvents: function() {
                 var self = this;
                 $('body')
-                    .on('click', '#' + this.layerMenuId + ' a.download', function() {
-                        var layerId = self.getClosestLayerId(this);
-                        self.destroyLayerMenu();
-                    })
-                    .on('click', '#' + this.layerMenuId + ' a.zoom', function() {
+                    .on('click', 'a.zoom', function() {
                         self.zoomToLayerExtent(self.getClosestLayerId(this));
-                        self.destroyLayerMenu();
                     })
                     .on('change', '#' + this.layerMenuId + ' .slider', function() {
                         var layerId = self.getClosestLayerId(this),
@@ -162,54 +152,6 @@ define([
                     $parent = $el.closest('[data-layer-id]'),
                     layerId = $parent.attr('data-layer-id');
                 return layerId;
-            },
-
-            showLayerMenu: function(el) {
-                var $el = $(el),
-                    layerId = this.getClosestLayerId(el),
-                    layer = this.tree.findLayer(layerId),
-                    service = layer.getService(),
-                    supportsOpacity = service.supportsOpacity(),
-                    $menu = this._createLayerMenu(layerId),
-                    $shadow = this._createLayerMenuShadow(),
-                    position = this.determineLayerMenuPosition($el, layerId);
-
-                $menu.css({
-                    top: position.top,
-                    left: position.left
-                });
-
-                if ($.i18n) {
-                    $menu.localize();
-                }
-
-                $('body').append($shadow).append($menu);
-            },
-
-            _createLayerMenu: function(layerId) {
-                var layer = this.tree.findLayer(layerId),
-                    service = layer.getService(),
-                    supportsOpacity = service.supportsOpacity(),
-                    opacity = layer.getOpacity(),
-                    html = this.layerMenuTmpl({
-                        layer: layer,
-                        id: this.layerMenuId,
-                        opacity: opacity,
-                        supportsOpacity: supportsOpacity
-                    });
-                return $(html);
-            },
-
-            _createLayerMenuShadow: function() {
-                var $shadow = $('<div class="layer-selector2-layer-menu-shadow">');
-                $shadow.on('click', _.bind(this.destroyLayerMenu, this));
-                return $shadow;
-            },
-
-            destroyLayerMenu: function() {
-                $('body').find('.layer-selector2-layer-menu').remove();
-                $('body').find('.layer-selector2-layer-menu-shadow').remove();
-                this.clearActiveStateForLayerTools('.more');
             },
 
             updateMap: function() {
@@ -394,7 +336,10 @@ define([
                 var isSelected = layer.isSelected(),
                     isExpanded = layer.isExpanded(),
                     isUnavailable = layer.isUnavailable(),
-                    infoBoxIsDisplayed = layer.infoIsDisplayed();
+                    infoBoxIsDisplayed = layer.infoIsDisplayed(),
+                    opacity = layer.getOpacity(),
+                    service = layer.getService(),
+                    supportsOpacity = service.supportsOpacity();
 
                 var cssClass = [];
                 if (isSelected) {
@@ -416,7 +361,9 @@ define([
                     isExpanded: isExpanded,
                     infoBoxIsDisplayed: infoBoxIsDisplayed,
                     indent: indent,
-                    renderLayer: _.bind(this.renderLayer, this, indent + 1)
+                    opacity: opacity,
+                    renderLayer: _.bind(this.renderLayer, this, indent + 1),
+                    supportsOpacity: supportsOpacity,
                 });
             },
 
@@ -638,37 +585,6 @@ define([
             setLayerOpacity: function(layerId, opacity) {
                 this.state = this.state.setLayerOpacity(layerId, opacity);
                 this.rebuildTree();
-            },
-
-            // Depending on what features are supported by the selected layer,
-            // the top of the layer menu should be positioned differently.
-            determineLayerMenuPosition: function($el, layerId) {
-                var offset = $el.offset(),
-                    layer = this.tree.findLayer(layerId),
-                    service = layer.getService(),
-                    supportsOpacity = service.supportsOpacity(),
-                    top = offset.top;
-
-                // Account for the height of the layer menu option if
-                // the option won't be shown in the menu.
-                if (!supportsOpacity) {
-                    top = top + 59;
-                }
-
-                if (!layer.getDownloadUrl()) {
-                    top = top + 32;
-                }
-
-                return {
-                    top: top,
-                    left: offset.left
-                };
-            },
-
-            setActiveStateForLayerTools: function(el, selector) {
-                this.clearActiveStateForLayerTools(selector);
-                $(el).find('i').addClass('active');
-                $(el).closest('[data-layer-id]').addClass('active');
             },
 
             clearActiveStateForLayerTools: function(selector) {
