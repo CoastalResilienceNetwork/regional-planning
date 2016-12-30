@@ -134,7 +134,7 @@
         "server": {
             "type": "ags",
             "layerType": "dynamic",
-            "url": "http://dev.services2.coastalresilience.org/arcgis/rest/services/Gulf_of_Mexico/",
+            "url": "http://services.coastalresilience.org/arcgis/rest/services/Gulf_of_Mexico/",
             "name": "Alabama"
         },
         "includeLayers": [
@@ -204,7 +204,7 @@
         "server": {
             "type": "ags",
             "layerType": "dynamic",
-            "url": "http://dev.services2.coastalresilience.org/arcgis/rest/services/GSVG",
+            "url": "http://services.coastalresilience.org/arcgis/rest/services/GSVG",
             "name": "GSVG"
         },
         "includeLayers": [

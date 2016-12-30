@@ -98,8 +98,8 @@ define([
             bindTabEvents: function() {
                 var self = this,
                     $el = $(this.container);
-                $el.on('click', 'dl.tabs a', function() {
-                    var tab = $(this).attr('data-tab');
+                $el.on('click', 'ul.nav-tabs a', function() {
+                    var tab = $(this).data('tab');
                     self.state = self.state.setTab(tab);
                     self.render();
                 });
@@ -357,8 +357,8 @@ define([
                     tab: this.state.getTab()
                 }));
 
-                $el.find('.tab-layers').append($(this.layersPluginTmpl()));
-                $el.find('.tab-report').append(this.drawReport.render());
+                $el.find('#layer-selector-tab-layers').append($(this.layersPluginTmpl()));
+                $el.find('#layer-selector-tab-report').append(this.drawReport.render());
 
                 $(this.container).empty().append($el);
                 this.renderLayerSelector();
@@ -478,11 +478,11 @@ define([
             },
 
             showSpinner: function() {
-                $(this.container).find('.tab-layers .loading').show();
+                $(this.container).find('#layer-selector-tab-layers .loading').show();
             },
 
             hideSpinner: function() {
-                $(this.container).find('.tab-layers .loading').hide();
+                $(this.container).find('#layer-selector-tab-layers .loading').hide();
             },
 
             // Fetch all map services so that on-demand layers are available

@@ -1,16 +1,18 @@
 ﻿<script type="text/template" id="plugin">
     <div class="layer-selector2">
         <div class="info-box-container"></div>
-        <dl class="tabs">
-          <dd<%= (tab === 'layers' ? ' class="active"' : '') %>>
-            <a data-tab="layers" class="i18n" data-i18n="Layers">Layers</a>
-          </dd>
-          <dd<%= (tab === 'report' ? ' class="active"' : '') %>>
-            <a data-tab="report" class="i18n" data-i18n="Draw &amp; Report">Draw &amp; Report</a>
-          </dd>
-        </dl>
-        <div class="tab-body tab-layers<%= (tab === 'layers' ? ' active' : '') %>"></div>
-        <div class="tab-body tab-report<%= (tab === 'report' ? ' active' : '' ) %>"></div>
+        <ul class="nav nav-tabs" role="tablist">
+          <li<%= (tab === 'layers' ? ' class="active"' : '') %>>
+            <a href="#layer-selector-tab-layers" data-tab="layers" data-toggle="tab" class="i18n" data-i18n="Layers">Layers</a>
+          </li>
+          <li<%= (tab === 'report' ? ' class="active"' : '') %>>
+            <a href="layer-selector-tab-report" data-tab="report" data-toggle="tab" class="i18n" data-i18n="Draw &amp; Report">Draw &amp; Report</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div id="layer-selector-tab-layers" role="tabpane" class="tab-pane <%= (tab === 'layers' ? ' active' : '') %>"></div>
+          <div id="layer-selector-tab-report" role="tabpane" class="tab-pane <%= (tab === 'report' ? ' active' : '' ) %>"></div>
+        </div>
     </div>
 </script>
 
@@ -22,9 +24,9 @@
 </script>
 
 <script type="text/template" id="filter">
-    <input type="text" class="filter i18n" data-i18n="[placeholder]Filter Map Layers"
+    <input type="text" class="form-control filter i18n" data-i18n="[placeholder]Filter Map Layers"
            placeholder="Filter Map Layers" value="<%- filterText %>" />
-    <a href="javascript:;" class="reset i18n" data-i18n="Reset Layers">Reset Layers</a>
+    <a href="javascript:;" class="button button-link reset i18n" data-i18n="Reset Layers">Reset Layers</a>
 </script>
 
 <script type="text/template" id="tree">
