@@ -140,7 +140,7 @@ define([
                     .on('click', 'a.zoom', function() {
                         self.zoomToLayerExtent(self.getClosestLayerId(this));
                     })
-                    .on('change', '#' + this.layerMenuId + ' .slider', function() {
+                    .on('change', '.layer-tools .slider', function() {
                         var layerId = self.getClosestLayerId(this),
                             opacity = parseFloat($(this).find('input').val());
                         self.setLayerOpacity(layerId, opacity);
