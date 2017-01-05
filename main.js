@@ -140,7 +140,7 @@ define([
                     .on('click', 'a.zoom', function() {
                         self.zoomToLayerExtent(self.getClosestLayerId(this));
                     })
-                    .on('change', '#' + this.layerMenuId + ' .slider', function() {
+                    .on('change', '.layer-tools .slider', function() {
                         var layerId = self.getClosestLayerId(this),
                             opacity = parseFloat($(this).find('input').val());
                         self.setLayerOpacity(layerId, opacity);
@@ -235,6 +235,8 @@ define([
                     if (service.supportsOpacity()) {
                         var drawingOptions = this.getDrawingOptions(layers),
                             mapLayer = this.map.getLayer(serviceUrl);
+
+                        mapLayer.setImageFormat('png32');
                         mapLayer.setLayerDrawingOptions(drawingOptions);
                     }
                 }, this);
