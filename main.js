@@ -23,7 +23,7 @@ define([
         "dojo/text!./overrides.json",
         "esri/layers/FeatureLayer",
         "esri/layers/ArcGISDynamicMapServiceLayer",
-        "esri/layers/ArcGISTiledMapServiceLayer",
+        "esri/layers/TileLayer",
         "esri/layers/WMSLayer",
         "esri/layers/LayerDrawingOptions",
         "framework/PluginBase",
@@ -44,7 +44,7 @@ define([
              overridesJson,
              FeatureLayer,
              ArcGISDynamicMapServiceLayer,
-             ArcGISTiledMapServiceLayer,
+             TileLayer,
              WMSLayer,
              LayerDrawingOptions,
              PluginBase,
@@ -166,7 +166,7 @@ define([
                         return;
                     }
 
-                    if (mapLayer instanceof esri.layers.ArcGISTiledMapServiceLayer) {
+                    if (mapLayer instanceof esri.layers.TileLayer) {
                         if (layerServiceIds.length === 0) {
                             mapLayer.hide();
                         } else {
@@ -283,7 +283,7 @@ define([
                     if (server.layerType === 'dynamic') {
                         return new ArcGISDynamicMapServiceLayer(serviceUrl);
                     } else if (server.layerType === 'tiled') {
-                        return new ArcGISTiledMapServiceLayer(serviceUrl);
+                        return new TileLayer(serviceUrl);
                     } else if (server.layerType === 'feature-layer') {
                         return new FeatureLayer(serviceUrl);
                     } else {
