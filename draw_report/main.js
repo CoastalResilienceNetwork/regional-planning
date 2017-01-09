@@ -16,7 +16,7 @@
 define(["dojo/_base/declare",
         "dojo/Deferred",
         "dojo/promise/all",
-        "esri/graphic",
+        "esri/Graphic",
         "esri/geometry/jsonUtils",
         "esri/layers/GraphicsLayer",
         "esri/symbols/SimpleFillSymbol",
