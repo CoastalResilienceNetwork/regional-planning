@@ -22,7 +22,7 @@ define([
         "dojo/text!./templates.html",
         "dojo/text!./overrides.json",
         "esri/layers/FeatureLayer",
-        "esri/layers/ArcGISDynamicMapServiceLayer",
+        "esri/layers/MapImageLayer",
         "esri/layers/TileLayer",
         "esri/layers/WMSLayer",
         "esri/layers/LayerDrawingOptions",
@@ -43,7 +43,7 @@ define([
              templates,
              overridesJson,
              FeatureLayer,
-             ArcGISDynamicMapServiceLayer,
+             MapImageLayer,
              TileLayer,
              WMSLayer,
              LayerDrawingOptions,
@@ -281,7 +281,7 @@ define([
             createServiceMapLayer: function(server, serviceUrl) {
                 if (server.type === 'ags') {
                     if (server.layerType === 'dynamic') {
-                        return new ArcGISDynamicMapServiceLayer(serviceUrl);
+                        return new MapImageLayer(serviceUrl);
                     } else if (server.layerType === 'tiled') {
                         return new TileLayer(serviceUrl);
                     } else if (server.layerType === 'feature-layer') {
