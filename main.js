@@ -24,7 +24,11 @@ define([
         "esri/layers/FeatureLayer",
         "esri/layers/MapImageLayer",
         "esri/layers/TileLayer",
+        /*
+        Not yet implemented in 4.2:
+        https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
         "esri/layers/WMSLayer",
+        */
         /*
         Not yet implemented in 4.2:
         https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
@@ -49,7 +53,11 @@ define([
              FeatureLayer,
              MapImageLayer,
              TileLayer,
+             /*
+             Not yet implemented in 4.2:
+             https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
              WMSLayer,
+             */
              /*
              Not yet implemented in 4.2:
              https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
@@ -306,7 +314,14 @@ define([
                         throw new Error('AGS service layer type is not supported: ' + server.layerType);
                     }
                 } else if (server.type === 'wms') {
+
+                    /*
+                    Not yet implemented in 4.2:
+                    https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
                     return new WMSLayer(serviceUrl);
+                    */
+                    window.console.log('WMSLayer not yet implemented in ESRI JS API 4.2');
+                    window.console.log('Unable to load map from', serviceUrl);
                 } else {
                     throw new Error('Service type not supported: ' + server.type);
                 }
