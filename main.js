@@ -25,7 +25,11 @@ define([
         "esri/layers/MapImageLayer",
         "esri/layers/TileLayer",
         "esri/layers/WMSLayer",
+        /*
+        Not yet implemented in 4.2:
+        https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
         "esri/layers/LayerDrawingOptions",
+        */
         "framework/PluginBase",
         "framework/util/ajax",
         //"./tests/index",
@@ -46,7 +50,11 @@ define([
              MapImageLayer,
              TileLayer,
              WMSLayer,
+             /*
+             Not yet implemented in 4.2:
+             https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
              LayerDrawingOptions,
+             */
              PluginBase,
              ajaxUtil,
              //unitTests,
@@ -233,11 +241,19 @@ define([
                 _.each(layerByService, function(layers, serviceUrl) {
                     var service = layers[0].getService();
                     if (service.supportsOpacity()) {
-                        var drawingOptions = this.getDrawingOptions(layers),
+                        var /*
+                            Not yet implemented in 4.2:
+                            https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
+                            drawingOptions = this.getDrawingOptions(layers),
+                            */
                             mapLayer = this.map.getLayer(serviceUrl);
 
                         mapLayer.setImageFormat('png32');
+                        /*
+                        Not yet implemented in 4.2:
+                        https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
                         mapLayer.setLayerDrawingOptions(drawingOptions);
+                        */
                     }
                 }, this);
             },
