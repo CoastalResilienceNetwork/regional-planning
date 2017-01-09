@@ -21,7 +21,7 @@ define(["dojo/_base/declare",
         "esri/layers/GraphicsLayer",
         "esri/symbols/SimpleFillSymbol",
         "esri/tasks/Geoprocessor",
-        "esri/tasks/FeatureSet",
+        "esri/tasks/support/FeatureSet",
         "esri/toolbars/draw",
         "dojo/text!./templates.html",
         "dojo/i18n!esri/nls/jsapi"
