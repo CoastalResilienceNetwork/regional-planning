@@ -24,7 +24,7 @@ define(["dojo/_base/declare",
         "esri/tasks/support/FeatureSet",
         "esri/toolbars/draw",
         "dojo/text!./templates.html",
-        "dojo/i18n!esri/nls/jsapi"
+        "dojo/i18n!esri/nls/common"
     ],
     function(declare,
              Deferred,
