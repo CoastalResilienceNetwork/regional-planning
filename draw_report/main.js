@@ -22,7 +22,11 @@ define(["dojo/_base/declare",
         "esri/symbols/SimpleFillSymbol",
         "esri/tasks/Geoprocessor",
         "esri/tasks/support/FeatureSet",
+        /*
+        Not yet implemented in 4.2:
+        https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#toolbars
         "esri/toolbars/draw",
+        */
         "dojo/text!./templates.html",
         "dojo/i18n!esri/nls/common"
     ],
@@ -35,7 +39,11 @@ define(["dojo/_base/declare",
              SimpleFillSymbol,
              Geoprocessor,
              FeatureSet,
+             /*
+             Not yet implemented in 4.2:
+             https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#toolbars
              Draw,
+             */
              templates,
              esriText) {
         "use strict";
@@ -55,7 +63,11 @@ define(["dojo/_base/declare",
                     id: 'analysis-draw'
                 });
                 this.map.addLayer(this.featureGroup);
+                /*
+                Not yet implemented in 4.2:
+                https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#toolbars
                 this.editBar = new Draw(this.map);
+                */
 
                 this.bindEvents();
             },
