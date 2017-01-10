@@ -4,8 +4,9 @@
     overflow: hidden;
 }
 
-.layer-selector2 .tab-content {
+.sidebar-content .layer-selector2 .tab-content {
     height: 100%;
+    padding: 0px;
 }
 
 .layer-selector2 ul li ul {
@@ -51,8 +52,7 @@
     }
 
 .layer-selector2 .tree-container {
-    height: 100%;
-    width: 103%;
+    height: calc(100% - 88px);
     overflow: auto;
 }
 
