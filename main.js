@@ -25,13 +25,13 @@ define([
         "esri/layers/MapImageLayer",
         "esri/layers/TileLayer",
         /*
-        Not yet implemented in 4.2:
-        https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
+        // Not yet implemented in Esri JS API v4.2:
+        // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
         "esri/layers/WMSLayer",
         */
         /*
-        Not yet implemented in 4.2:
-        https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
+        // Not yet implemented in Esri JS API v4.2:
+        // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
         "esri/layers/LayerDrawingOptions",
         */
         "framework/PluginBase",
@@ -54,13 +54,13 @@ define([
              MapImageLayer,
              TileLayer,
              /*
-             Not yet implemented in 4.2:
-             https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
+             // Not yet implemented in Esri JS API v4.2:
+             // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
              WMSLayer,
              */
              /*
-             Not yet implemented in 4.2:
-             https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
+             // Not yet implemented in Esri JS API v4.2:
+             // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
              LayerDrawingOptions,
              */
              PluginBase,
@@ -250,16 +250,16 @@ define([
                     var service = layers[0].getService();
                     if (service.supportsOpacity()) {
                         var /*
-                            Not yet implemented in 4.2:
-                            https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
+                            // Not yet implemented in Esri JS API v4.2:
+                            // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
                             drawingOptions = this.getDrawingOptions(layers),
                             */
                             mapLayer = this.map.getLayer(serviceUrl);
 
                         mapLayer.setImageFormat('png32');
                         /*
-                        Not yet implemented in 4.2:
-                        https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
+                        // Not yet implemented in Esri JS API v4.2:
+                        // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
                         mapLayer.setLayerDrawingOptions(drawingOptions);
                         */
                     }
@@ -316,8 +316,8 @@ define([
                 } else if (server.type === 'wms') {
 
                     /*
-                    Not yet implemented in 4.2:
-                    https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
+                    // Not yet implemented in Esri JS API v4.2:
+                    // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
                     return new WMSLayer(serviceUrl);
                     */
                     window.console.log('WMSLayer not yet implemented in ESRI JS API 4.2');

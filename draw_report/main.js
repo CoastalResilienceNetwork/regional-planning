@@ -23,8 +23,8 @@ define(["dojo/_base/declare",
         "esri/tasks/Geoprocessor",
         "esri/tasks/support/FeatureSet",
         /*
-        Not yet implemented in 4.2:
-        https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#toolbars
+        // Not yet implemented in Esri JS API v4.2:
+        // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#toolbars
         "esri/toolbars/draw",
         */
         "dojo/text!./templates.html",
@@ -40,8 +40,8 @@ define(["dojo/_base/declare",
              Geoprocessor,
              FeatureSet,
              /*
-             Not yet implemented in 4.2:
-             https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#toolbars
+             // Not yet implemented in Esri JS API v4.2:
+             // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#toolbars
              Draw,
              */
              templates,
@@ -64,8 +64,8 @@ define(["dojo/_base/declare",
                 });
                 this.map.addLayer(this.featureGroup);
                 /*
-                Not yet implemented in 4.2:
-                https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#toolbars
+                // Not yet implemented in Esri JS API v4.2:
+                // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#toolbars
                 this.editBar = new Draw(this.map);
                 */
 
