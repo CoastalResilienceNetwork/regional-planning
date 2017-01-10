@@ -24,6 +24,7 @@ define([
         "esri/layers/FeatureLayer",
         "esri/layers/MapImageLayer",
         "esri/layers/TileLayer",
+        "esri/layers/GraphicsLayer",
         /*
         // Not yet implemented in Esri JS API v4.2:
         // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
@@ -53,6 +54,7 @@ define([
              FeatureLayer,
              MapImageLayer,
              TileLayer,
+             GraphicsLayer,
              /*
              // Not yet implemented in Esri JS API v4.2:
              // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
@@ -87,7 +89,7 @@ define([
             initialize: function (frameworkParameters, currentRegion) {
                 declare.safeMixin(this, frameworkParameters);
 
-                this.drawReport = new DrawAndReport(this, $('<div>').get(0));
+                // this.drawReport = new DrawAndReport(this, $('<div>').get(0));
 
                 this.pluginTmpl = _.template(this.getTemplateById('plugin'));
                 this.layersPluginTmpl = _.template(this.getTemplateById('layers-plugin'));
@@ -178,22 +180,26 @@ define([
                     var mapLayer = this.map.getLayer(serviceUrl);
 
                     // Ignore feature group added by Draw & Report.
-                    if (mapLayer instanceof esri.layers.GraphicsLayer) {
+                    if (mapLayer instanceof GraphicsLayer) {
                         return;
                     }
 
-                    if (mapLayer instanceof esri.layers.TileLayer) {
+                    if (mapLayer instanceof TileLayer || mapLayer instanceof MapImageLayer) {
                         if (layerServiceIds.length === 0) {
-                            mapLayer.hide();
+                            mapLayer.visible = false;
                         } else {
-                            mapLayer.show();
+                            mapLayer.visible = true;
                         }
                     } else {
+                        /*
+                        // `.setVisibleLayers` seems to be unavailable in
+                        // Esri JS API v4.2
                         if (layerServiceIds.length === 0) {
                             mapLayer.setVisibleLayers([]);
                         } else {
                             mapLayer.setVisibleLayers(layerServiceIds);
                         }
+                        */
                     }
                 }, this);
 
@@ -288,14 +294,12 @@ define([
                 var server = layer.getServer(),
                     serviceUrl = layer.getService().getServiceUrl(),
                     mapLayer = this.map.getLayer(serviceUrl);
-
                 // There's nothing to do if the service layer already exists.
                 if (mapLayer) {
                     return;
                 }
 
                 mapLayer = this.createServiceMapLayer(server, serviceUrl);
-
                 // Need to assign a deterministic ID, otherwise, the ESRI
                 // JSAPI will generate a unique ID for us.
                 mapLayer.id = serviceUrl;
@@ -333,7 +337,7 @@ define([
                 }));
 
                 $el.find('#layer-selector-tab-layers').append($(this.layersPluginTmpl()));
-                $el.find('#layer-selector-tab-report').append(this.drawReport.render());
+                // $el.find('#layer-selector-tab-report').append(this.drawReport.render());
 
                 $(this.container).empty().append($el);
                 this.renderLayerSelector();
@@ -409,22 +413,22 @@ define([
             getState: function() {
                 return {
                     layers: this.state.getState(),
-                    drawReport: this.drawReport.getState()
+                    // drawReport: this.drawReport.getState()
                 };
             },
 
             setState: function(data) {
                 var self = this;
 
-                var layerData = data.layers,
-                    drawReportData = data.drawReport;
+                var layerData = data.layers;
+                    // drawReportData = data.drawReport;
 
                 this.state = new State(layerData);
                 this.rebuildTree();
                 this.renderLayerSelector();
                 this.restoreSelectedLayers();
 
-                this.drawReport.setState(drawReportData);
+                // this.drawReport.setState(drawReportData);
             },
 
             // Restore map service data for each selected layer
@@ -523,12 +527,12 @@ define([
             },
 
             deactivate: function() {
-                this.drawReport.deactivate();
+                // this.drawReport.deactivate();
             },
 
             hibernate: function() {
                 this.clearAll();
-                this.drawReport.hibernate();
+                // this.drawReport.hibernate();
             },
 
             subregionActivated: function(currentRegion) {
@@ -592,7 +596,7 @@ define([
                 layer.getService().fetchMapService().then(function() {
                     self.rebuildTree();
                 });
-                this.drawReport.update();
+                // this.drawReport.update();
             },
 
             applyFilter: function(filterText) {
@@ -612,7 +616,7 @@ define([
                 this.state = new State();
                 this.rebuildTree();
                 this.renderLayerSelector();
-                this.drawReport.clearAll();
+                // this.drawReport.clearAll();
             },
 
             setLayerOpacity: function(layerId, opacity) {
@@ -641,7 +645,7 @@ define([
             },
 
             requestReport: function() {
-                this.drawReport.queueRequestReport();
+                // this.drawReport.queueRequestReport();
             }
         });
     }
