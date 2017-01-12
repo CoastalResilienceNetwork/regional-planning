@@ -16,15 +16,17 @@
 define(["dojo/_base/declare",
         "dojo/Deferred",
         "dojo/promise/all",
-        "esri/graphic",
-        "esri/geometry/jsonUtils",
+        "esri/Graphic",
+        "esri/geometry/support/jsonUtils",
         "esri/layers/GraphicsLayer",
         "esri/symbols/SimpleFillSymbol",
         "esri/tasks/Geoprocessor",
-        "esri/tasks/FeatureSet",
-        "esri/toolbars/draw",
+        "esri/tasks/support/FeatureSet",
+        // Draw is not yet implemented in Esri JS API v4.2:
+        // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#toolbars
+        // "esri/toolbars/draw",
         "dojo/text!./templates.html",
-        "dojo/i18n!esri/nls/jsapi"
+        "dojo/i18n!esri/nls/common"
     ],
     function(declare,
              Deferred,
@@ -35,7 +37,9 @@ define(["dojo/_base/declare",
              SimpleFillSymbol,
              Geoprocessor,
              FeatureSet,
-             Draw,
+             // Draw is not yet implemented in Esri JS API v4.2:
+             // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#toolbars
+             // Draw,
              templates,
              esriText) {
         "use strict";
@@ -55,7 +59,9 @@ define(["dojo/_base/declare",
                     id: 'analysis-draw'
                 });
                 this.map.addLayer(this.featureGroup);
-                this.editBar = new Draw(this.map);
+                // Draw is not yet implemented in Esri JS API v4.2:
+                // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#toolbars
+                // this.editBar = new Draw(this.map);
 
                 this.bindEvents();
             },
