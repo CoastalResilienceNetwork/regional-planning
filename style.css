@@ -120,14 +120,18 @@
         .layer-selector2 .layer-tools .dropdown-menu {
             left: -140px;
         }
+        .layer-selector2 .layer-selector2-layer-menu li.slider {
+            text-align: center;
+            border: none;
+        }
 
-.layer-selector2 .info-box-container {
+.info-box-container {
     position: absolute;
-    top: 0;
-    left: 100%;
+    top: 100px;
+    left: 590px;
     margin-left: 10px;
     }
-    .layer-selector2 .info-box .body {
+    .info-box-container .info-box .body {
         width: 300px;
         max-height: 400px;
         background: #fff;
@@ -136,7 +140,7 @@
         padding: 10px 10px 0 10px;
         overflow: auto;
     }
-    .layer-selector2 .info-box .close {
+    .info-box-container .info-box .close {
         position: absolute;
         top: 7px;
         right: 7px;
@@ -152,31 +156,26 @@
         width: 24px;
         font-size: 14px;
     }
-    .layer-selector2 .info-box .close:hover {
+    .info-box-container .info-box .close:hover {
         background: #f1f2f2;
         color: #333;
     }
-    .layer-selector2 .info-box .info-label {
+    .info-box-container .info-box .info-label {
         font-weight: bold;
         padding-bottom: 3px;
     }
-    .layer-selector2 .info-box .info-value {
+    .info-box-container .info-box .info-value {
         padding-bottom: 10px;
     }
     /* Neutralize Foundation's zealous table styling so the slider won't look terrible */
-    .layer-selector2 .info-box table {
+    .info-box-container .info-box table {
         background-color: transparent;
         border-width: 0;
         margin: 0;
         }
-        .layer-selector2 .info-box td {
+        .info-box-container .info-box table td {
             padding: 0;
         }
-
-    .layer-selector2-layer-menu li.slider {
-        text-align: center;
-        border: none;
-    }
 
 .filter-container a.reset {
     margin-bottom: 0;
