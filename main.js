@@ -25,16 +25,12 @@ define([
         "esri/layers/MapImageLayer",
         "esri/layers/TileLayer",
         "esri/layers/GraphicsLayer",
-        /*
-        // Not yet implemented in Esri JS API v4.2:
+        // WMSLayer is not yet implemented in Esri JS API v4.2:
         // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
-        "esri/layers/WMSLayer",
-        */
-        /*
-        // Not yet implemented in Esri JS API v4.2:
+        // esri/layers/WMSLayer",
+        // LayerDrawingOptions is not yet implemented in Esri JS API v4.2:
         // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
-        "esri/layers/LayerDrawingOptions",
-        */
+        // "esri/layers/LayerDrawingOptions",
         "framework/PluginBase",
         "framework/util/ajax",
         //"./tests/index",
@@ -55,16 +51,12 @@ define([
              MapImageLayer,
              TileLayer,
              GraphicsLayer,
-             /*
-             // Not yet implemented in Esri JS API v4.2:
+             // WMSLayer is not yet implemented in Esri JS API v4.2:
              // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
-             WMSLayer,
-             */
-             /*
-             // Not yet implemented in Esri JS API v4.2:
+             // WMSLayer,
+             // LayerDrawingOptions is not yet implemented in Esri JS API v4.2:
              // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
-             LayerDrawingOptions,
-             */
+             // LayerDrawingOptions,
              PluginBase,
              ajaxUtil,
              //unitTests,
@@ -88,7 +80,7 @@ define([
 
             initialize: function (frameworkParameters, currentRegion) {
                 declare.safeMixin(this, frameworkParameters);
-
+                // Deactivated for upgrade to Esri JS API v4.2
                 // this.drawReport = new DrawAndReport(this, $('<div>').get(0));
 
                 this.pluginTmpl = _.template(this.getTemplateById('plugin'));
@@ -191,9 +183,9 @@ define([
                             mapLayer.visible = true;
                         }
                     } else {
-                        /*
                         // `.setVisibleLayers` seems to be unavailable in
                         // Esri JS API v4.2
+                        /*
                         if (layerServiceIds.length === 0) {
                             mapLayer.setVisibleLayers([]);
                         } else {
@@ -255,19 +247,15 @@ define([
                 _.each(layerByService, function(layers, serviceUrl) {
                     var service = layers[0].getService();
                     if (service.supportsOpacity()) {
-                        var /*
-                            // Not yet implemented in Esri JS API v4.2:
+                            // LayerDrawingOptions is not yet implemented in Esri JS API v4.2:
                             // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
-                            drawingOptions = this.getDrawingOptions(layers),
-                            */
-                            mapLayer = this.map.getLayer(serviceUrl);
+                            // drawingOptions = this.getDrawingOptions(layers),
+                        var  mapLayer = this.map.getLayer(serviceUrl);
 
                         mapLayer.setImageFormat('png32');
-                        /*
-                        // Not yet implemented in Esri JS API v4.2:
+                        // LayerDrawingOptions is not yet implemented in Esri JS API v4.2:
                         // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
-                        mapLayer.setLayerDrawingOptions(drawingOptions);
-                        */
+                        // mapLayer.setLayerDrawingOptions(drawingOptions);
                     }
                 }, this);
             },
@@ -318,12 +306,9 @@ define([
                         throw new Error('AGS service layer type is not supported: ' + server.layerType);
                     }
                 } else if (server.type === 'wms') {
-
-                    /*
-                    // Not yet implemented in Esri JS API v4.2:
+                    // WMSLayers is not yet implemented in Esri JS API v4.2:
                     // https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html#layers
-                    return new WMSLayer(serviceUrl);
-                    */
+                    // return new WMSLayer(serviceUrl);
                     window.console.log('WMSLayer not yet implemented in ESRI JS API 4.2');
                     window.console.log('Unable to load map from', serviceUrl);
                 } else {
@@ -337,6 +322,7 @@ define([
                 }));
 
                 $el.find('#layer-selector-tab-layers').append($(this.layersPluginTmpl()));
+                // Deactivated for upgrade to Esri JS API v4.2
                 // $el.find('#layer-selector-tab-report').append(this.drawReport.render());
 
                 $(this.container).empty().append($el);
@@ -413,6 +399,7 @@ define([
             getState: function() {
                 return {
                     layers: this.state.getState(),
+                    // Deactivated for upgrade to Esri JS API v4.2
                     // drawReport: this.drawReport.getState()
                 };
             },
@@ -421,6 +408,7 @@ define([
                 var self = this;
 
                 var layerData = data.layers;
+                    // Deactivated for upgrade to Esri JS API v4.2
                     // drawReportData = data.drawReport;
 
                 this.state = new State(layerData);
@@ -428,6 +416,7 @@ define([
                 this.renderLayerSelector();
                 this.restoreSelectedLayers();
 
+                // Deactivated for upgrade to Esri JS API v4.2
                 // this.drawReport.setState(drawReportData);
             },
 
@@ -527,11 +516,13 @@ define([
             },
 
             deactivate: function() {
+                // Deactivated for upgrade to Esri JS API v4.2
                 // this.drawReport.deactivate();
             },
 
             hibernate: function() {
                 this.clearAll();
+                // Deactivated for upgrade to Esri JS API v4.2
                 // this.drawReport.hibernate();
             },
 
@@ -596,6 +587,7 @@ define([
                 layer.getService().fetchMapService().then(function() {
                     self.rebuildTree();
                 });
+                // Deactivated for upgrade to Esri JS API v4.2
                 // this.drawReport.update();
             },
 
@@ -616,6 +608,7 @@ define([
                 this.state = new State();
                 this.rebuildTree();
                 this.renderLayerSelector();
+                // Deactivated for upgrade to Esri JS API v4.2
                 // this.drawReport.clearAll();
             },
 
@@ -645,6 +638,7 @@ define([
             },
 
             requestReport: function() {
+                // Deactivated for upgrade to Esri JS API v4.2
                 // this.drawReport.queueRequestReport();
             }
         });
