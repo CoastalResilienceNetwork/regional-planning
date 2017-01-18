@@ -74,6 +74,7 @@ define([
                 this.drawReport = new DrawAndReport(this, $('<div>').get(0));
 
                 this.pluginTmpl = _.template(this.getTemplateById('plugin'));
+                this.infoBoxContainerTmpl = _.template(this.getTemplateById('info-box-container'));
                 this.layersPluginTmpl = _.template(this.getTemplateById('layers-plugin'));
                 this.filterTmpl = _.template(this.getTemplateById('filter'));
                 this.treeTmpl = _.template(this.getTemplateById('tree'));
@@ -120,9 +121,6 @@ define([
                     .on('click', 'a.info', function() {
                         self.state = self.state.setInfoBoxLayerId(self.getClosestLayerId(this));
                         self.showLayerInfo();
-                    })
-                    .on('click', '.info-box .close', function() {
-                        self.hideLayerInfo();
                     })
                     .on('keyup', 'input.filter', function() {
                         var $el = $(this),
@@ -300,6 +298,11 @@ define([
                 var $el = $(this.pluginTmpl({
                     tab: this.state.getTab()
                 }));
+
+                // The info box floats outside of the side bar,
+                // so we attach it to the body.
+                $('body').append($(this.infoBoxContainerTmpl()));
+                this.$infoBoxContainer = $('.info-box-container');
 
                 $el.find('#layer-selector-tab-layers').append($(this.layersPluginTmpl()));
                 $el.find('#layer-selector-tab-report').append(this.drawReport.render());
@@ -489,9 +492,12 @@ define([
                 this.preload().then(function() {
                     self.renderLayerSelector();
                 });
+
+                this.$infoBoxContainer.show();
             },
 
             deactivate: function() {
+                this.$infoBoxContainer.hide();
                 this.drawReport.deactivate();
             },
 
@@ -541,7 +547,11 @@ define([
                             html = self.infoBoxTmpl({
                                 layer: layer
                             });
-                        $(self.container).find('.info-box-container').html(html);
+                        self.$infoBoxContainer
+                            .html(html)
+                            .on('click', '.info-box .close', function() {
+                                self.hideLayerInfo();
+                            });
                     })
                     .otherwise(function(err) {
                         console.error(err);
@@ -549,7 +559,7 @@ define([
             },
 
             hideLayerInfo: function() {
-                $(this.container).find('.info-box-container').empty();
+                this.$infoBoxContainer.empty();
                 this.state = this.state.clearInfoBoxLayerId();
                 this.rebuildTree();
             },
