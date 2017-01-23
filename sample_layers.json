@@ -134,7 +134,7 @@
         "server": {
             "type": "ags",
             "layerType": "dynamic",
-            "url": "http://dev.services2.coastalresilience.org/arcgis/rest/services/Gulf_of_Mexico/",
+            "url": "http://services.coastalresilience.org/arcgis/rest/services/Gulf_of_Mexico/",
             "name": "Alabama"
         },
         "includeLayers": [
@@ -196,7 +196,10 @@
             "name": "NHC_SeamlessSLOSH_Category1"
         },
         "includeLayers": [
-            { "name": "Inundation Depth " }
+            {
+                "name": "Inundation Depth ",
+                "downloadUrl": "https://raw.githubusercontent.com/CoastalResilienceNetwork/regional-planning/master/README.md"
+            }
         ]
     },
     {
@@ -204,7 +207,7 @@
         "server": {
             "type": "ags",
             "layerType": "dynamic",
-            "url": "http://dev.services2.coastalresilience.org/arcgis/rest/services/GSVG",
+            "url": "http://services.coastalresilience.org/arcgis/rest/services/GSVG",
             "name": "GSVG"
         },
         "includeLayers": [
