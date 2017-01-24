@@ -83,7 +83,7 @@ define([
 
             // Return layer ID defined in the map service.
             getServiceId: function() {
-                return this.node.name;
+                return this.node.id;
             },
 
             getServer: function() {
