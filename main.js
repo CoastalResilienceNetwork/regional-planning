@@ -176,22 +176,38 @@ define([
                         return;
                     }
 
-                    if (mapLayer instanceof TileLayer || mapLayer instanceof MapImageLayer) {
+                    if (mapLayer instanceof TileLayer) {
                         if (layerServiceIds.length === 0) {
                             mapLayer.visible = false;
                         } else {
                             mapLayer.visible = true;
                         }
-                    } else {
-                        // `.setVisibleLayers` seems to be unavailable in
-                        // Esri JS API v4.2
-                        /*
+                    } else if (mapLayer instanceof MapImageLayer){
                         if (layerServiceIds.length === 0) {
-                            mapLayer.setVisibleLayers([]);
+                            mapLayer.sublayers.forEach(function(subLayer) {
+                                subLayer.visible = false;
+                            });
                         } else {
-                            mapLayer.setVisibleLayers(layerServiceIds);
+                            // Add sublayers that have never been activated before
+                            _.forEach(layerServiceIds, function(id) {
+                                var layer = mapLayer.findSublayerById(id);
+
+                                if (!layer) {
+                                    mapLayer.sublayers.add({
+                                        id: id
+                                    });
+                                }
+                            });
+
+                            // Activate and deactivate layers based on what is visible
+                            mapLayer.sublayers.forEach(function(subLayer) {
+                                if (_.contains(layerServiceIds, subLayer.id)) {
+                                    subLayer.visible = true;
+                                } else {
+                                    subLayer.visible = false;
+                                }
+                            });
                         }
-                        */
                     }
                 }, this);
 
@@ -297,7 +313,10 @@ define([
             createServiceMapLayer: function(server, serviceUrl) {
                 if (server.type === 'ags') {
                     if (server.layerType === 'dynamic') {
-                        return new MapImageLayer(serviceUrl);
+                        return new MapImageLayer({
+                            url: serviceUrl,
+                            sublayers: []
+                        });
                     } else if (server.layerType === 'tiled') {
                         return new TileLayer(serviceUrl);
                     } else if (server.layerType === 'feature-layer') {
