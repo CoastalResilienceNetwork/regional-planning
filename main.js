@@ -294,6 +294,8 @@ define([
                     if (service.supportsOpacity()) {
                         var drawingOptions = this.getDrawingOptions(layers),
                             mapLayer = this.map.getLayer(serviceUrl);
+
+                        mapLayer.setImageFormat('png32');
                         mapLayer.setLayerDrawingOptions(drawingOptions);
                     }
                 }, this);
