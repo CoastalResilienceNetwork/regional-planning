@@ -134,7 +134,7 @@ define([
 
             bindLayerMenuEvents: function() {
                 var self = this;
-                $('body')
+                $(self.container)
                     .on('click', 'a.zoom', function() {
                         self.zoomToLayerExtent(self.getClosestLayerId(this));
                     })
