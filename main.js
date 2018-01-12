@@ -415,15 +415,6 @@ define([
                 }, this);
             },
 
-            beforePrint: function(printDeferred) {
-                // We can short circuit the plugin print chain by simply
-                // rejecting this deferred object.
-                printDeferred.reject();
-
-                // Trigger an export dialog for this pane.
-                this.app.dispatcher.trigger('export-map:pane-' + this.app.paneNumber);
-            },
-
             showSpinner: function() {
                 $(this.container).find('#layer-selector-tab-layers .loading').show();
             },
