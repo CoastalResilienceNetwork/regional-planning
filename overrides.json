@@ -1,6 +1,5 @@
 {
     "name": "Regional Planning",
-    "description": "Configure and control layers to be overlayed on the base map.",
     "size": "small",
     "hasCustomPrint": true
 }
