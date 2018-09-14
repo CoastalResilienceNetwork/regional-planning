@@ -330,6 +330,10 @@ define([
                     renderLayer: _.bind(this.renderLayer, this, 0)
                 });
                 $(this.container).find('.tree-container').html(html);
+
+                if ($.i18n) {
+                    $(this.container).localize();
+                }
             }, 5),
 
             renderLayer: function(indent, layer) {
