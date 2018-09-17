@@ -188,21 +188,6 @@
         ]
     },
     {
-        "displayName": "Tiled layers",
-        "server": {
-            "type": "ags",
-            "layerType": "tiled",
-            "url": "http://tiles.arcgis.com/tiles/C8EMgrsFcRFL6LrL/arcgis/rest/services/",
-            "name": "NHC_SeamlessSLOSH_Category1"
-        },
-        "includeLayers": [
-            {
-                "name": "Inundation Depth ",
-                "downloadUrl": "https://raw.githubusercontent.com/CoastalResilienceNetwork/regional-planning/master/README.md"
-            }
-        ]
-    },
-    {
         "name": "St Vincent and the Grenadines",
         "server": {
             "type": "ags",
