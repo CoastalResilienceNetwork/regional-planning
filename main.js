@@ -330,6 +330,10 @@ define([
                     renderLayer: _.bind(this.renderLayer, this, 0)
                 });
                 $(this.container).find('.tree-container').html(html);
+
+                if ($.i18n) {
+                    $(this.container).localize();
+                }
             }, 5),
 
             renderLayer: function(indent, layer) {
@@ -413,15 +417,6 @@ define([
                             .then(this.rebuildTree.bind(this));
                     }
                 }, this);
-            },
-
-            beforePrint: function(printDeferred) {
-                // We can short circuit the plugin print chain by simply
-                // rejecting this deferred object.
-                printDeferred.reject();
-
-                // Trigger an export dialog for this pane.
-                this.app.dispatcher.trigger('export-map:pane-' + this.app.paneNumber);
             },
 
             showSpinner: function() {
