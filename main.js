@@ -55,7 +55,7 @@ define([
         var overrides = JSON.parse(overridesJson);
         return declare(PluginBase, {
             toolbarName: overrides.name || "Regional Planning",
-            fullName: overrides.description || "Configure and control layers to be overlayed on the base map.",
+            fullName: overrides.description || "Regional Planning",
             size: overrides.size || 'small',
             width: overrides.width || 300,
             hasCustomPrint: _.isUndefined(overrides.hasCustomPrint) ? true : overrides.hasCustomPrint,
