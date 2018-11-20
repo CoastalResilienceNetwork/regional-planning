@@ -2,7 +2,7 @@ define([
         "dojo/_base/declare",
         "dojo/Deferred",
         "underscore",
-        "./lib/xmlToJson",
+        "./lib/xmlToJSON",
         "framework/util/ajax",
         "./util",
         "./LayerNode",
