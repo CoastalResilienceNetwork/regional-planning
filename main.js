@@ -24,7 +24,6 @@ define([
         "framework/PluginBase",
         "framework/util/ajax",
         //"./tests/index",
-        "./draw_report/main",
         "./State",
         "./Config",
         "./Tree",
@@ -45,7 +44,6 @@ define([
              PluginBase,
              ajaxUtil,
              //unitTests,
-             DrawAndReport,
              State,
              Config,
              Tree,
@@ -65,8 +63,6 @@ define([
 
             initialize: function (frameworkParameters, currentRegion) {
                 declare.safeMixin(this, frameworkParameters);
-
-                this.drawReport = new DrawAndReport(this, $('<div>').get(0));
 
                 this.pluginTmpl = _.template(this.getTemplateById('plugin'));
                 this.infoBoxContainerTmpl = _.template(this.getTemplateById('info-box-container'));
@@ -300,7 +296,6 @@ define([
                 this.$infoBoxContainer = $('.info-box-container');
 
                 $el.find('#layer-selector-tab-layers').append($(this.layersPluginTmpl()));
-                $el.find('#layer-selector-tab-report').append(this.drawReport.render());
 
                 $(this.container).empty().append($el);
                 this.renderLayerSelector();
@@ -380,22 +375,18 @@ define([
             getState: function() {
                 return {
                     layers: this.state.getState(),
-                    drawReport: this.drawReport.getState()
                 };
             },
 
             setState: function(data) {
                 var self = this;
 
-                var layerData = data.layers,
-                    drawReportData = data.drawReport;
+                var layerData = data.layers;
 
                 this.state = new State(layerData);
                 this.rebuildTree();
                 this.renderLayerSelector();
                 this.restoreSelectedLayers();
-
-                this.drawReport.setState(drawReportData);
             },
 
             // Restore map service data for each selected layer
@@ -413,7 +404,6 @@ define([
                     var layer = this.tree.findLayer(layerId);
                     if (layer) {
                         layer.getService().fetchMapService()
-                            .then(this.requestReport.bind(this))
                             .then(this.rebuildTree.bind(this));
                     }
                 }, this);
@@ -488,12 +478,10 @@ define([
 
             deactivate: function() {
                 this.$infoBoxContainer.hide();
-                this.drawReport.deactivate();
             },
 
             hibernate: function() {
                 this.clearAll();
-                this.drawReport.hibernate();
             },
 
             subregionActivated: function(currentRegion) {
@@ -561,7 +549,6 @@ define([
                 layer.getService().fetchMapService().then(function() {
                     self.rebuildTree();
                 });
-                this.drawReport.update();
             },
 
             applyFilter: function(filterText) {
@@ -581,7 +568,6 @@ define([
                 this.state = new State();
                 this.rebuildTree();
                 this.renderLayerSelector();
-                this.drawReport.clearAll();
             },
 
             setLayerOpacity: function(layerId, opacity) {
@@ -607,10 +593,6 @@ define([
                     .filterByName(this.state.getFilterText());
                 this.renderTree();
                 this.updateMap();
-            },
-
-            requestReport: function() {
-                this.drawReport.queueRequestReport();
             }
         });
     }
