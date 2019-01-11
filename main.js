@@ -81,19 +81,8 @@ define([
             },
 
             bindEvents: function() {
-                this.bindTabEvents();
                 this.bindTreeEvents();
                 this.bindLayerMenuEvents();
-            },
-
-            bindTabEvents: function() {
-                var self = this,
-                    $el = $(this.container);
-                $el.on('click', 'ul.nav-tabs a', function() {
-                    var tab = $(this).data('tab');
-                    self.state = self.state.setTab(tab);
-                    self.render();
-                });
             },
 
             bindTreeEvents: function() {
@@ -286,16 +275,14 @@ define([
             },
 
             render: function() {
-                var $el = $(this.pluginTmpl({
-                    tab: this.state.getTab()
-                }));
+                var $el = $(this.pluginTmpl({}));
 
                 // The info box floats outside of the side bar,
                 // so we attach it to the body.
                 $('body').append($(this.infoBoxContainerTmpl()));
                 this.$infoBoxContainer = $('.info-box-container');
 
-                $el.find('#layer-selector-tab-layers').append($(this.layersPluginTmpl()));
+                $el.find('#layers').append($(this.layersPluginTmpl()));
 
                 $(this.container).empty().append($el);
                 this.renderLayerSelector();
@@ -410,11 +397,11 @@ define([
             },
 
             showSpinner: function() {
-                $(this.container).find('#layer-selector-tab-layers .loading').show();
+                $(this.container).find('#layers .loading').show();
             },
 
             hideSpinner: function() {
-                $(this.container).find('#layer-selector-tab-layers .loading').hide();
+                $(this.container).find('#layers .loading').hide();
             },
 
             // Fetch all map services so that on-demand layers are available

@@ -4,14 +4,7 @@
 
 ﻿<script type="text/template" id="plugin">
     <div class="layer-selector2">
-        <ul class="nav nav-tabs" role="tablist">
-          <li<%= (tab === 'layers' ? ' class="active"' : '') %>>
-            <a href="#layer-selector-tab-layers" data-tab="layers" data-toggle="tab" class="i18n" data-i18n="Layers">Layers</a>
-          </li>
-        </ul>
-        <div class="tab-content">
-          <div id="layer-selector-tab-layers" role="tabpane" class="tab-pane <%= (tab === 'layers' ? ' active' : '') %>"></div>
-        </div>
+        <div id="layers"></div>
     </div>
 </script>
 
