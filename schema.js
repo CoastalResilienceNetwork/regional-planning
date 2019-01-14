@@ -31,23 +31,6 @@
                 combine: { type: 'boolean' },
                 opacity: { type: 'number' },
                 downloadUrl: { type: 'string' },
-                reportDbLayerName: { type: 'string' },
-                reports: reports()
-            }
-        };
-    }
-
-    function reports() {
-        return {
-            type: 'array',
-            items: {
-                type: 'object',
-                additionalProperties: false,
-                properties: {
-                    display: { type: 'string' },
-                    units: { type: 'string' },
-                    field: { type: 'string' }
-                }
             }
         };
     }
@@ -63,8 +46,6 @@
                 type: { enum: ['ags', 'wms'] },
                 layerType: { enum: ['dynamic', 'tiled', 'feature-layer'] },
                 url: { type: 'string' },
-                reportGpUrl: { type: 'string' },
-                reportDbPath: { type: 'string' }
             }
         };
     }

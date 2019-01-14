@@ -106,39 +106,6 @@ define([
                 return new NullService();
             },
 
-            getReportDbLayerName: function() {
-                var defaultValue = this.parent &&
-                        this.parent.getReportDbLayerName() || '';
-                return this.node.reportDbLayerName || defaultValue;
-            },
-
-            // Return all configured reports for this layer, NOT including
-            // the report layer name.
-            getReports: function() {
-                var reports = this.parent && this.parent.getReports() || [];
-                return reports.concat(this.node.reports || []);
-            },
-
-            // Return all configured reports for this layer, including
-            // the report layer name.
-            getReportLayers: function() {
-                var server = this.getServer(),
-                    reportDbPath = server && server.reportDbPath,
-                    reportDbLayerName = this.getReportDbLayerName(),
-                    reportLayer = reportDbPath + LAYER_ID_DELIM + reportDbLayerName,
-                    reports = this.getReports();
-
-                if (reportDbPath && reportDbLayerName) {
-                    return _.map(reports, function(report) {
-                        return _.assign({}, report, {
-                            layer: reportLayer
-                        });
-                    });
-                }
-
-                return [];
-            },
-
             findLayer: function(layerId) {
                 if (layerId === this.id()) {
                     return this;

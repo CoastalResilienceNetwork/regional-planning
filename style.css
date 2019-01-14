@@ -4,33 +4,18 @@
     overflow: hidden;
 }
 
-.sidebar-content .layer-selector2 .tab-content {
+.sidebar-content .layer-selector2 #layers {
     height: 100%;
     padding: 0px;
-}
-
-.layer-selector2 ul li ul {
-    margin-left: 0;
+    position: relative;
+    display: block;
 }
 
 .layer-selector2 .info-box {
     color: #000;
 }
 
-.layer-selector2 .tab-body {
-    position: relative;
-}
-
-.layer-selector2 .tab-pane {
-    display: none;
-}
-
-.layer-selector2 .tab-pane.active {
-    display: block;
-    height: 100%;
-}
-
-#layer-selector-tab-layers .loading {
+#layers .loading {
     display: none;
     position: absolute;
     top: 0;

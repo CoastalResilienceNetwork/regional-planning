@@ -24,7 +24,6 @@ define([
         "framework/PluginBase",
         "framework/util/ajax",
         //"./tests/index",
-        "./draw_report/main",
         "./State",
         "./Config",
         "./Tree",
@@ -45,7 +44,6 @@ define([
              PluginBase,
              ajaxUtil,
              //unitTests,
-             DrawAndReport,
              State,
              Config,
              Tree,
@@ -66,8 +64,6 @@ define([
             initialize: function (frameworkParameters, currentRegion) {
                 declare.safeMixin(this, frameworkParameters);
 
-                this.drawReport = new DrawAndReport(this, $('<div>').get(0));
-
                 this.pluginTmpl = _.template(this.getTemplateById('plugin'));
                 this.infoBoxContainerTmpl = _.template(this.getTemplateById('info-box-container'));
                 this.layersPluginTmpl = _.template(this.getTemplateById('layers-plugin'));
@@ -85,19 +81,8 @@ define([
             },
 
             bindEvents: function() {
-                this.bindTabEvents();
                 this.bindTreeEvents();
                 this.bindLayerMenuEvents();
-            },
-
-            bindTabEvents: function() {
-                var self = this,
-                    $el = $(this.container);
-                $el.on('click', 'ul.nav-tabs a', function() {
-                    var tab = $(this).data('tab');
-                    self.state = self.state.setTab(tab);
-                    self.render();
-                });
             },
 
             bindTreeEvents: function() {
@@ -290,17 +275,14 @@ define([
             },
 
             render: function() {
-                var $el = $(this.pluginTmpl({
-                    tab: this.state.getTab()
-                }));
+                var $el = $(this.pluginTmpl({}));
 
                 // The info box floats outside of the side bar,
                 // so we attach it to the body.
                 $('body').append($(this.infoBoxContainerTmpl()));
                 this.$infoBoxContainer = $('.info-box-container');
 
-                $el.find('#layer-selector-tab-layers').append($(this.layersPluginTmpl()));
-                $el.find('#layer-selector-tab-report').append(this.drawReport.render());
+                $el.find('#layers').append($(this.layersPluginTmpl()));
 
                 $(this.container).empty().append($el);
                 this.renderLayerSelector();
@@ -380,22 +362,18 @@ define([
             getState: function() {
                 return {
                     layers: this.state.getState(),
-                    drawReport: this.drawReport.getState()
                 };
             },
 
             setState: function(data) {
                 var self = this;
 
-                var layerData = data.layers,
-                    drawReportData = data.drawReport;
+                var layerData = data.layers;
 
                 this.state = new State(layerData);
                 this.rebuildTree();
                 this.renderLayerSelector();
                 this.restoreSelectedLayers();
-
-                this.drawReport.setState(drawReportData);
             },
 
             // Restore map service data for each selected layer
@@ -413,18 +391,17 @@ define([
                     var layer = this.tree.findLayer(layerId);
                     if (layer) {
                         layer.getService().fetchMapService()
-                            .then(this.requestReport.bind(this))
                             .then(this.rebuildTree.bind(this));
                     }
                 }, this);
             },
 
             showSpinner: function() {
-                $(this.container).find('#layer-selector-tab-layers .loading').show();
+                $(this.container).find('#layers .loading').show();
             },
 
             hideSpinner: function() {
-                $(this.container).find('#layer-selector-tab-layers .loading').hide();
+                $(this.container).find('#layers .loading').hide();
             },
 
             // Fetch all map services so that on-demand layers are available
@@ -488,12 +465,10 @@ define([
 
             deactivate: function() {
                 this.$infoBoxContainer.hide();
-                this.drawReport.deactivate();
             },
 
             hibernate: function() {
                 this.clearAll();
-                this.drawReport.hibernate();
             },
 
             subregionActivated: function(currentRegion) {
@@ -561,7 +536,6 @@ define([
                 layer.getService().fetchMapService().then(function() {
                     self.rebuildTree();
                 });
-                this.drawReport.update();
             },
 
             applyFilter: function(filterText) {
@@ -581,7 +555,6 @@ define([
                 this.state = new State();
                 this.rebuildTree();
                 this.renderLayerSelector();
-                this.drawReport.clearAll();
             },
 
             setLayerOpacity: function(layerId, opacity) {
@@ -607,10 +580,6 @@ define([
                     .filterByName(this.state.getFilterText());
                 this.renderTree();
                 this.updateMap();
-            },
-
-            requestReport: function() {
-                this.drawReport.queueRequestReport();
             }
         });
     }

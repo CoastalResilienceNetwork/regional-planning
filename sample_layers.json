@@ -5,7 +5,7 @@
         "server": {
             "type": "ags",
             "layerType": "dynamic",
-            "url": "http://services.coastalresilience.org/arcgis/rest/services/New_Jersey/",
+            "url": "http://services2.coastalresilience.org/arcgis/rest/services/New_Jersey/",
             "name": "New_Jersey"
         },
         "includeLayers": [
@@ -18,7 +18,7 @@
                         "server": {
                             "type": "ags",
                             "layerType": "dynamic",
-                            "url": "http://services.coastalresilience.org/arcgis/rest/services/New_Jersey/",
+                            "url": "http://services2.coastalresilience.org/arcgis/rest/services/New_Jersey/",
                             "name": "New_Jersey"
                         }
                     },
@@ -134,7 +134,7 @@
         "server": {
             "type": "ags",
             "layerType": "dynamic",
-            "url": "http://services.coastalresilience.org/arcgis/rest/services/Gulf_of_Mexico/",
+            "url": "http://services2.coastalresilience.org/arcgis/rest/services/Gulf_of_Mexico/",
             "name": "Alabama"
         },
         "includeLayers": [
@@ -158,9 +158,7 @@
             "type": "ags",
             "layerType": "dynamic",
             "url": "http://54.241.26.242/arcgis/rest/services/LA_Freshwater",
-            "name": "LA_Map_Layers",
-            "reportGpUrl": "http://50.18.215.52/arcgis/rest/services/Louisiana_Freshwater/DrawAndReport/GPServer/getDrawAndReportDataPath",
-            "reportDbPath": "D:/arcgisserver/directories/arcgissystem/arcgisinput/Louisiana_Freshwater/Managed_Areas2.MapServer/extracted/v101/lfa.gdb"
+            "name": "LA_Map_Layers"
         },
         "includeLayers": [
             {
@@ -168,20 +166,7 @@
                 "includeLayers": [
                     {
                         "name": "Wildlife Management Areas",
-                        "includeAllLayers": true,
-                        "reportDbLayerName": "All_WMA",
-                        "reports": [
-                            {
-                                "display": "Wildlife Management Area Total Area",
-                                "units": "sq km",
-                                "field": ""
-                            },
-                            {
-                                "display": "Wildlife Management Areas",
-                                "units": "sq km",
-                                "field": "NAME"
-                            }
-                        ]
+                        "includeAllLayers": true
                     }
                 ]
             }
@@ -192,7 +177,7 @@
         "server": {
             "type": "ags",
             "layerType": "dynamic",
-            "url": "http://services.coastalresilience.org/arcgis/rest/services/GSVG",
+            "url": "http://services2.coastalresilience.org/arcgis/rest/services/GSVG",
             "name": "GSVG"
         },
         "includeLayers": [

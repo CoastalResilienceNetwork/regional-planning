@@ -1,6 +1,6 @@
 # regional-planning
 
-The `regional-planning` plugin is an updated version of the [map-tree](https://github.com/CoastalResilienceNetwork/map-tree/) plugin (formerly known as `layer-selector`). It has many of the same features, but with an updated UI, simplified configuration, and an integrated version of the [draw-and-report](https://github.com/CoastalResilienceNetwork/draw-and-report) plugin.
+The `regional-planning` plugin is an updated version of the [map-tree](https://github.com/CoastalResilienceNetwork/map-tree/) plugin (formerly known as `layer-selector`). It has many of the same features, but with an updated UI and simplified configuration.
 
 ### Getting started
 
@@ -38,26 +38,6 @@ The layer object is the core configuration object used in the config.
 - **excludeLayers** - If the layer is a layer group, specify a list of layer names to exclude from being displayed as sublayers in the UI. All other sublayers will be added.
 - **combine** - If this is set to `true`, this layer and all of it's configured sublayers will be displayed as one layer in the plugin UI.
 - **server** - If the layer is located on a different service than the parent layer, specify a server object with the server information for this layer.
-
-##### Draw and report configuration
-
-A sample report configuration is available in [sample_layers.json](https://github.com/CoastalResilienceNetwork/regional-planning/blob/master/sample_layers.json#L154-L188).
-
-The following two configuration settings must be added to the `server` configuration object of the parent layer.
-
-- **reportGpUrl** - The URL to the geoprocessing service used to generate reports.
-- **reportDbPath** - The path to the report database for the configured layers.
-
-To make a layer available in the `draw-and-report` plugin, the following configuration settings must be added to the layer configuration.
-
-- **reportDbName** - The name of the corresponding layer in the report DB.
-- **reports** - A list of report objects.
-
-Report object
-
-- **display** - The name to use in the plugin UI for the report.
-- **units** - "sq. km.", "acres", etc.
-- **field** - The field in the `reportDbName` layer that should be used to generate the report. If this is left blank, the "area" field will be used.
 
 ##### Structure
 
