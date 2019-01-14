@@ -1,22 +1,9 @@
 {
     "Regional Planning": "Planificación Regional",
     "Layers": "Capas",
-    "Draw & Report": "Dibuje & Reporte",
     "Filter Map Layers": "Filtro de capas del mapa",
     "Reset Layers": "Reiniciar capas",
     "Download": "Descargar",
     "Zoom to Extent": "Ver la extensión",
-    "Opacity": "Transparencia",
-    "Draw and report is a way to view specific data by drawing a custom shape on the map. Your report will contain:": "Dibujo y reporte es una forma de ver datos específicos mediante la demarcación de una área específica en el mapa. Su informe. Contiene:",
-    "No reports have been configured for this layer": "No hay informes configurados para esta capa",
-    "No layers have been selected yet": "No se han seleccionado capas",
-    "No values for this layer in your area of interest": "No existen valores para esta capa en su área de interés",
-    "Draw area of interest": "Dibujar el área de interés",
-    "Redraw area of interest": "Volver a dibujar el área de interés",
-    "Download Results": "Descargar resultados",
-    "Click to start drawing": "Haga clic para empezar a dibujar",
-    "Click to continue drawing": "Haga clic para continuar dibujando",
-    "Double-click to complete": "Haga doble clic para completar",
-    "Unknown": "Desconocido",
-    "Reset": "Cancelar"
+    "Opacity": "Transparencia"
 }
